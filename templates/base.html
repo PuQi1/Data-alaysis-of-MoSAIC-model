@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clone Analysis</title>
+    <style>
+        body {
+            display: flex;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        #sidebar {
+            width: 200px;
+            background-color: #2c3e50;
+            color: #fff;
+            min-height: 100vh;
+            padding: 15px;
+        }
+        #sidebar h3 {
+            padding: 10px 0;
+            border-bottom: 1px solid #fff;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        #sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        #sidebar ul li a:hover {
+            background-color: #34495e;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+            background: #ecf0f1;
+        }
+        #content h1 {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h3>Navigation</h3>
+        <ul>
+            <li><a href="/">Overlap Analysis for All Datasets</a></li>
+            <li><a href="/shannon">Shannon Analysis for Different Days</a></li>
+            <li><a href="/chaoshen">Chaoshen Analysis for Different Days</a></li>
+            <li><a href="/shannon_age">Shannon Analysis for Different Ages</a></li>
+            <li><a href="/chaoshen_age">Chaoshen Analysis for Different Ages</a></li>
+            <li><a href="/cluster">Cluster Analysis for Different Days</a></li>
+            <li><a href="/cluster_age">Cluster Analysis for Different Ages</a></li>
+            <li><a href="/cluster_dataset">Cluster Analysis for All Datasets</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+

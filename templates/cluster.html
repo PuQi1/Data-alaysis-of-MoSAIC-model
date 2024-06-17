@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Cluster Analysis According to Clone IDs' Distributions of Different Days</h1>
+<form action="/cluster" method="post">
+    <p>Select a file:</p>
+    <select name="file">
+        <option value="memfast.csv">Memfast</option>
+        <option value="memslow.csv">Memslow</option>
+        <option value="naidis.csv">Naidis</option>
+        <option value="naiinc.csv">Naiinc</option>
+    </select>
+    <p>Select the top num:</p>
+    <select name="num">
+        {% for num in range(1000, 5001, 500) %}
+        <option value="{{ num }}">{{ num }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" name="action" value="analyze_basic">Analyze</button>
+</form>
+
+
+<h2>Plot of Silhouette Scores for Different Number of Clusters</h2>
+<img src="{{ url_for('static', filename='cluster_plot1.png') }}" alt="Select best cluster">
+
+
+<p>Select a cluster number</p>
+<form action="/cluster" method="post">
+    <!-- Re-select files (if needed) and number of clusters form -->
+    <input type="hidden" name="action" value="analyze_clusters">
+    <input type="hidden" name="file" value="{{ request.form['file'] }}">
+    <input type="hidden" name="num" value="{{ request.form['num'] }}">
+
+    <select name="n_clusters">
+        {% for n in range(2, 11) %}
+        <option value="{{ n }}">{{ n }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Analyze Clusters</button>
+</form>
+
+
+<h2>t-SNE Visualization for the Selected Dataset and the Selected Cluster</h2>
+<img src="{{ url_for('static', filename='cluster_plot2.png') }}" alt="t-SNE Visualization">
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Chaoshen Indices for Different Times and Pearson Correlation</h1>
+<form action="/chaoshen" method="post">
+    <p>Select files:</p>
+    <input type="checkbox" name="dataset" value="memfast.csv"> Memfast<br>
+    <input type="checkbox" name="dataset" value="memslow.csv"> Memslow<br>
+    <input type="checkbox" name="dataset" value="naidis.csv"> Naidis<br>
+    <input type="checkbox" name="dataset" value="naiinc.csv"> Naiinc<br>
+    <button type="submit">Analyze</button>
+</form>
+
+<h2>Plots of Chaoshen Indices for Different Times</h2>
+<img src="{{ url_for('static', filename='chaoshen_indices_plot.png') }}" alt="Chaoshen Indices Plot">
+
+<h2>Correlation Results of Chaoshen Indices and Total Number of Cells for a Given Dataset</h2>
+{% if correlations %}
+<ul>
+    {% for dataset, correlation in correlations.items() %}
+        <li>{{ dataset }}: Pearson correlation = {{ correlation[0] }}, p-value = {{ correlation[1] }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

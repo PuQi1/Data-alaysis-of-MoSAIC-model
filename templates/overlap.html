@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Overlap Analyze of Clone IDs for Different Datasets</h1>
+<form action="/" method="post">
+    <p>Select files:</p>
+    <input type="checkbox" name="dataset" value="memfast"> Memfast<br>
+    <input type="checkbox" name="dataset" value="memslow"> Memslow<br>
+    <input type="checkbox" name="dataset" value="naidis"> Naidis<br>
+    <input type="checkbox" name="dataset" value="naiinc"> Naiinc<br>
+    <button type="submit">Analyze</button>
+</form>
+
+<h2>Plots of overlapping</h2>
+<img src="{{ url_for('static', filename='over_plot1.png') }}" alt="Plot 1">
+<img src="{{ url_for('static', filename='over_plot2.png') }}" alt="Plot 2">
+<img src="{{ url_for('static', filename='over_plot3.png') }}" alt="Plot 3">
+{% endblock %}
